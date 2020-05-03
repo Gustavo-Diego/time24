@@ -1,6 +1,7 @@
 import 'package:projeto1/app/modules/home/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:projeto1/app/modules/home/home_page.dart';
+import 'package:projeto1/app/modules/home/pages/criar_sonho.dart';
+import 'package:projeto1/app/modules/home/pages/home_page.dart';
 
 class HomeModule extends ChildModule {
   @override
@@ -11,6 +12,7 @@ class HomeModule extends ChildModule {
   @override
   List<Router> get routers => [
         Router(Modular.initialRoute, child: (_, args) => HomePage()),
+        Router('/CriarSonho', child: (_, args) => CriarSonho()),
       ];
 
   static Inject get to => Inject<HomeModule>.of();
