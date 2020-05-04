@@ -14,9 +14,25 @@ final Color corLetraCinzaEscuro = Color.fromARGB(255, 80, 76, 75);
 
 final Color corLetraCinzaClaro = Color.fromARGB(255, 111, 111, 111);
 
-final Color corBrancoEscuro = Color.fromARGB(255, 238, 238, 238);
+final Color corBrancoEscuro = Color.fromARGB(255, 245, 245, 245);
 
 final Color corCinzaClaro = Color.fromARGB(255, 200, 200, 200);
+
+final Color corVerde = Color.fromARGB(255, 0, 250, 10);
+
+  final styleTextRendimentoInvestimento1 = TextStyle(
+    color: corLetraCinzaClaro,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans',
+    fontSize: 12.0,
+  );
+  
+    final styleTextRendimentoInvestimento2 = TextStyle(
+    color: corLetraCinzaEscuro,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans',
+    fontSize: 24.0,
+  );
 
    final styleTextApresentacao = TextStyle(
     color: Colors.white,
@@ -90,4 +106,25 @@ final Color corCinzaClaro = Color.fromARGB(255, 200, 200, 200);
         offset: Offset(0, 2),
       ),
     ],
+  );
+
+    final styleTextLetraBTNInvestimento = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans',
+    fontSize: 20.0,
+  );
+  
+  final styleTextLetraInvestimento1 = TextStyle(
+    color: corLetraCinzaEscuro,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans',
+    fontSize: 15.0,
+  );
+  
+    final styleTextLetraInvestimento2 = TextStyle(
+    color: corLetraCinzaClaro,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans',
+    fontSize: 15.0,
   );

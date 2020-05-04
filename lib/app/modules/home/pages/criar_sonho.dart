@@ -1,15 +1,78 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto1/app/modules/home/home_controller.dart';
+import 'package:projeto1/app/modules/home/models/sonho.dart';
 import 'package:projeto1/app/modules/shared/utilities/constants.dart';
 
+
+//teste
+import 'package:shared_preferences/shared_preferences.dart';
+
+
 class CriarSonho extends StatefulWidget {
+
+  var sonho = new List<Sonho>();
+
+  CriarSonho(){
+    sonho = [];
+  }
+
   @override
   _CriarSonhoState createState() => _CriarSonhoState();
 }
 
 class _CriarSonhoState extends ModularState<CriarSonho, HomeController> {
+
+//////////////////////////////////////////////////////////////////////////////
+  var newTaskControlerSonho = TextEditingController();
+  var newTaskControlerValorSonho = TextEditingController();
+
+  void adicionaItem(){
+
+    if(newTaskControlerSonho.text.isEmpty || newTaskControlerValorSonho.text.isEmpty) return print("voltou nada");
+
+    setState(() {
+      widget.sonho.add(
+        Sonho(
+          nome: newTaskControlerSonho.text,
+          valorEstipulado: num.parse(newTaskControlerValorSonho.text),
+        ),
+      );
+      newTaskControlerSonho.text = "";
+      newTaskControlerValorSonho.text = "0";
+      save();
+    });
+  }
+
+  save() async {
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.setString('data', jsonEncode( widget.sonho ));
+  }
+
+    Future load() async {
+    var  prefs = await SharedPreferences.getInstance();
+    var data = prefs.getString('data');
+
+    if(data != null){
+      Iterable decoded = jsonDecode(data);
+      List<Sonho> result = decoded.map((x) => Sonho.fromJson(x)).toList();
+
+      setState(() {
+        widget.sonho = result;
+      });
+    }
+  }
+
+  void callAll() {
+    adicionaItem();
+    Modular.to.pop();
+    load();
+  }
+
+///////////////////////////////////////////////////////////////////////////////
 
     Widget _setaVoltar() {
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
@@ -63,7 +126,8 @@ class _CriarSonhoState extends ModularState<CriarSonho, HomeController> {
           decoration: caixaEscritaBranca,
           height: 60.0,
           child: TextField(
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.text,
+            controller: newTaskControlerSonho,
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'OpenSans',
@@ -103,7 +167,8 @@ class _CriarSonhoState extends ModularState<CriarSonho, HomeController> {
           decoration: caixaEscritaBranca,
           height: 60.0,
           child: TextField(
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.number,
+            controller: newTaskControlerValorSonho,
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'OpenSans',
@@ -130,7 +195,7 @@ class _CriarSonhoState extends ModularState<CriarSonho, HomeController> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () => print('Login Button Pressed'),
+        onPressed: () => callAll(),
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),

@@ -1,14 +1,32 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projeto1/app/modules/home/models/investimento.dart';
+import 'package:projeto1/app/modules/home/models/sonho.dart';
 import 'package:projeto1/app/modules/shared/utilities/constants.dart';
 import 'package:projeto1/app/modules/home/home_controller.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
-  final String title;
-  const HomePage({Key key, this.title = "Home"}) : super(key: key);
+ // final String title;
+ // const HomePage({Key key, this.title = "Home"}) : super(key: key);
+
+  // var investimento = new List<Investimento>();
+
+  var sonho = new List<Sonho>();
+
+  HomePage(){
+    sonho = [];
+
+    // investimento.add(Investimento(dci: 131, nome: "Banco Caixa", vencimento: "10/10/2020", valorMinimo: 20));
+    // investimento.add(Investimento(dci: 131, nome: "Banco Nubank", vencimento: "16/08/2020", valorMinimo: 500 ));
+    // investimento.add(Investimento(dci: 131, nome: "Banco Ítau", vencimento: "15/03/2020", valorMinimo: 85));
+
+  }
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -21,6 +39,64 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   final pageController = PageController();
   int get indexPage => pageController?.page?.round() ?? 0;
 //////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////sonhos
+///
+
+  Future load() async {
+    var  prefs = await SharedPreferences.getInstance();
+    var data = prefs.getString('data');
+
+    if(data != null){
+      Iterable decoded = jsonDecode(data);
+      List<Sonho> result = decoded.map((x) => Sonho.fromJson(x)).toList();
+
+      setState(() {
+        widget.sonho = result;
+      });
+    }
+  }
+
+  _HomePageState(){
+    load();
+  }
+
+  Widget _listaSonhos() {
+    return ListView.builder(
+        itemCount: widget.sonho.length,
+        itemBuilder: (context, index) {
+          final sonh = widget.sonho[index];
+          return ListTile(
+            title: Text(sonh.nome),
+            subtitle: Text(sonh.valorEstipulado.toString()),
+          );
+        });
+  }
+
+//////////////////////// carrega os investimentos
+
+  // void adicionaItem(){
+
+  //   // if(newTaskControler.text.isEmpty) return;
+
+  //   // setState(() {
+  //   //   widget.items.add(
+  //   //     Item(
+  //   //       title: newTaskControler.text,
+  //   //       done: false,
+  //   //     ),
+  //   //   );
+  //     // newTaskControler.text = "";
+  //     // save();
+  //   });
+  // }
+
+//////
+///
+/////////////////////////////////
+
+
 
 // para montar o grafico de pizza
 List<charts.Series<Task, String>> _seriesPieData;
@@ -154,15 +230,153 @@ List<charts.Series<Task, String>> _seriesPieData;
     );
   }
 
-  Widget _listaSonhos() {
-    return ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return ListTile();
-        });
-  }
+
 
   /////////////////////////////////////////////////////////////////////////////////////
+  
+   Widget _listaTodosInvestimento1() {
+    return Container(
+        alignment: Alignment.centerLeft,
+        decoration: styleBoxTotalInvestimento,
+        height: 160.0,
+        padding: EdgeInsets.symmetric(
+          horizontal: 15.0,
+          vertical: 15.0,
+        ),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("CDI 138%", style:styleTextLetraInvestimento1),
+              Text("BANCO DO BRASIL", style:styleTextLetraInvestimento2),
+              Text("VENCIMENTO 31/10/2021", style:styleTextLetraInvestimento1),
+              SizedBox(height: 10.0),
+              Text("VALOR MÍNIMO R\$ 500,00", style:styleTextLetraInvestimento1),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              Container(
+                    // padding: EdgeInsets.symmetric(vertical: 10.0),
+                    width: 120,
+                    child: RaisedButton(
+                      elevation: 7.0,
+                      onPressed: () => Modular.to.pushNamed('/ConfirmarInvestimento'),
+                      padding: EdgeInsets.all(3.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: corSecundaria,
+                      child: Text(
+                        'SIMULAR',
+                        style: TextStyle(
+                          color: corFundo,
+                          letterSpacing: 1.2,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'OpenSans',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ]));
+  }
+
+  Widget _listaTodosInvestimento2() {
+    return Container(
+        alignment: Alignment.centerLeft,
+        decoration: styleBoxTotalInvestimento,
+        height: 160.0,
+        padding: EdgeInsets.symmetric(
+          horizontal: 15.0,
+          vertical: 15.0,
+        ),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("CDI 138%", style:styleTextLetraInvestimento1),
+              Text("BANCO DO BRASIL", style:styleTextLetraInvestimento1),
+              Text("VENCIMENTO 31/10/2021", style:styleTextLetraInvestimento2),
+              SizedBox(height: 10.0),
+              Text("VALOR MÍNIMO R\$ 500,00", style:styleTextLetraInvestimento1),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              Container(
+                    // padding: EdgeInsets.symmetric(vertical: 10.0),
+                    width: 120,
+                    child: RaisedButton(
+                      elevation: 7.0,
+                      onPressed: () => Modular.to.pushNamed('/ConfirmarInvestimento'),
+                      padding: EdgeInsets.all(3.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: corSecundaria,
+                      child: Text(
+                        'SIMULAR',
+                        style: TextStyle(
+                          color: corFundo,
+                          letterSpacing: 1.2,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'OpenSans',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ]));
+  }
+
+  Widget _listaTodosInvestimento3() {
+    return Container(
+        alignment: Alignment.centerLeft,
+        decoration: styleBoxTotalInvestimento,
+        height: 160.0,
+        padding: EdgeInsets.symmetric(
+          horizontal: 15.0,
+          vertical: 15.0,
+        ),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("CDI 138%", style:styleTextLetraInvestimento1),
+              Text("BANCO DO BRASIL", style:styleTextLetraInvestimento1),
+              Text("VENCIMENTO 31/10/2021", style:styleTextLetraInvestimento2),
+              SizedBox(height: 10.0),
+              Text("VALOR MÍNIMO R\$ 500,00", style:styleTextLetraInvestimento1),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              Container(
+                    // padding: EdgeInsets.symmetric(vertical: 10.0),
+                    width: 120,
+                    child: RaisedButton(
+                      elevation: 7.0,
+                      onPressed: () => Modular.to.pushNamed('/ConfirmarInvestimento'),
+                      padding: EdgeInsets.all(3.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: corSecundaria,
+                      child: Text(
+                        'SIMULAR',
+                        style: TextStyle(
+                          color: corFundo,
+                          letterSpacing: 1.2,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'OpenSans',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ]));
+  }
 
   // tela do sonho que será separada chamada apenas quando clicar em sonho
   Widget _sonho() {
@@ -358,13 +572,23 @@ List<charts.Series<Task, String>> _seriesPieData;
     );
   }
 
-  Widget _listaInvestimentos() {
-    return ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return ListTile();
-        });
-  }
+  // Widget _listaInvestimentos() {
+  //   return Container(
+  //     child: ListView.builder(
+  //       itemCount: widget.investimento.length,
+  //       itemBuilder: (context, index) {
+  //         final invest = widget.investimento[index];
+  //         return ListTile(
+  //           title: Text(invest.nome),
+  //           subtitle: Text(invest.vencimento),
+  //           leading: Text(invest.dci.toString()),
+  //           onLongPress: (){},
+  //           trailing: Text(invest.valorMinimo.toString()),
+  //         );
+  //       }
+  //     )
+  //   ) ;
+  // }
 
   /// Tela de INVESTIMENTO  final
   /////////////////////////////////////////////////////////////////////////////////////
@@ -496,7 +720,24 @@ List<charts.Series<Task, String>> _seriesPieData;
     );
   }
 
-  ////////////////////////////
+  ////////////////////////////lista de sonhos
+  // Widget _listaSonhos() {
+  //   return Container(
+  //     child: ListView.builder(
+  //       itemCount: widget.investimento.length,
+  //       itemBuilder: (context, index) {
+  //         final invest = widget.investimento[index];
+  //         return ListTile(
+  //           title: Text(invest.nome),
+  //           subtitle: Text(invest.vencimento),
+  //           leading: Text(invest.dci.toString()),
+  //           onLongPress: (){},
+  //           trailing: Text(invest.valorMinimo.toString()),
+  //         );
+  //       }
+  //     )
+  //   ) ;
+  // }
 
 
   @override
@@ -542,6 +783,16 @@ List<charts.Series<Task, String>> _seriesPieData;
                           _apresentacao(),
                           SizedBox(height: 25.0),
                           _boxInvestimentoTotal(),
+                          SizedBox(height: 25.0),
+                          SizedBox(
+                            width: 200,
+                            height: 100,
+                            child: Container(
+                              child: Scaffold(
+                                body:_listaSonhos(),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -587,6 +838,12 @@ List<charts.Series<Task, String>> _seriesPieData;
                           _disponivelCarteira(),
                           SizedBox(height: 15.0),
                           _pesquisarInvestimento(),
+                          SizedBox(height: 20.0),
+                          _listaTodosInvestimento1(),
+                          SizedBox(height: 20.0),
+                          _listaTodosInvestimento2(),
+                          SizedBox(height: 20.0),
+                          _listaTodosInvestimento3(),
                         ],
                       ),
                     ),
@@ -674,7 +931,15 @@ List<charts.Series<Task, String>> _seriesPieData;
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                         // _graficoPizza(),
+                          SizedBox(
+                            width: 200,
+                            height: 100,
+                            child: Container(
+                              child: Scaffold(
+                                // body:_listaInvestimentos()
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -683,6 +948,7 @@ List<charts.Series<Task, String>> _seriesPieData;
               ),
             ),
           ),
+          
           
         ],
       ),
