@@ -27,12 +27,12 @@ class _EscolherSonhoInvestimentoState extends ModularState<EscolherSonhoInvestim
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           Text(
             'Disponível na carteira',
-            style: styleTextApresentacao,
+            style: styleTextlongo,
           ),
           SizedBox(height: 10.0),
           Text(
             'R\$ 1.100,00',
-            style: styleTextApresentacao,
+            style: styleTextlongo,
           ),
         ]),
         InkWell(
@@ -50,7 +50,6 @@ class _EscolherSonhoInvestimentoState extends ModularState<EscolherSonhoInvestim
         Text("INVESTIMENTO CONFIRMADO", style:styleTextLetraInvestimento2),
         SizedBox(height: 10.0),
         InkWell(
-          onTap: () => Modular.to.pushNamed('/CriarSonho'),
           child: Icon(Icons.check_box, color: corVerde, size: 80),
         ),
       ]
@@ -64,6 +63,7 @@ class _EscolherSonhoInvestimentoState extends ModularState<EscolherSonhoInvestim
         Text("SELECIONE UM SONHO", style:styleTextLetraInvestimento2),
         InkWell(
           child: Icon(Icons.add, color: corVerde, size: 35),
+          onTap: () => Modular.to.pushNamed('/CriarSonho'),
         ),
       ]
     );
@@ -99,7 +99,7 @@ class _EscolherSonhoInvestimentoState extends ModularState<EscolherSonhoInvestim
                   child: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
                     padding: EdgeInsets.symmetric(
-                      horizontal: 30.0,
+                      horizontal: 25.0,
                       vertical: 30.0,
                     ),
                     child: Column(

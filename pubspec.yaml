@@ -49,12 +49,12 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/app/shared/assets/sonhodefault.png
+    - lib/app/modules/shared/assets/sonhodefault.png
 
   fonts:
     - family: OpenSans
       fonts:
-        - asset: lib/app/shared/assets/fonts/OpenSans.ttf
+        - asset: lib/app/modules/shared/assets/fonts/OpenSans.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

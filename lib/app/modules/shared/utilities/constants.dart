@@ -41,6 +41,13 @@ final Color corVerde = Color.fromARGB(255, 0, 250, 10);
     fontSize: 28.0,
   );
 
+     final styleTextlongo = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans',
+    fontSize: 22.0,
+  );
+
   final styleBoxTotalInvestimento = BoxDecoration(
     color: corBrancoEscuro,
     borderRadius: BorderRadius.circular(10.0),
@@ -119,12 +126,13 @@ final Color corVerde = Color.fromARGB(255, 0, 250, 10);
     color: corLetraCinzaEscuro,
     fontWeight: FontWeight.bold,
     fontFamily: 'OpenSans',
-    fontSize: 15.0,
+    fontSize: 12.5,
   );
   
     final styleTextLetraInvestimento2 = TextStyle(
     color: corLetraCinzaClaro,
     fontWeight: FontWeight.bold,
     fontFamily: 'OpenSans',
-    fontSize: 15.0,
+    fontSize: 13.0,
   );
+  

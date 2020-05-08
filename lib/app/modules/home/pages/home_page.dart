@@ -295,8 +295,8 @@ List<charts.Series<Task, String>> _seriesPieData;
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text("CDI 138%", style:styleTextLetraInvestimento1),
-              Text("BANCO DO BRASIL", style:styleTextLetraInvestimento1),
-              Text("VENCIMENTO 31/10/2021", style:styleTextLetraInvestimento2),
+              Text("BANCO DO BRASIL", style:styleTextLetraInvestimento2),
+              Text("VENCIMENTO 31/10/2021", style:styleTextLetraInvestimento1),
               SizedBox(height: 10.0),
               Text("VALOR MÍNIMO R\$ 500,00", style:styleTextLetraInvestimento1),
               Row(
@@ -343,8 +343,8 @@ List<charts.Series<Task, String>> _seriesPieData;
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text("CDI 138%", style:styleTextLetraInvestimento1),
-              Text("BANCO DO BRASIL", style:styleTextLetraInvestimento1),
-              Text("VENCIMENTO 31/10/2021", style:styleTextLetraInvestimento2),
+              Text("BANCO DO BRASIL", style:styleTextLetraInvestimento2),
+              Text("VENCIMENTO 31/10/2021", style:styleTextLetraInvestimento1),
               SizedBox(height: 10.0),
               Text("VALOR MÍNIMO R\$ 500,00", style:styleTextLetraInvestimento1),
               Row(
@@ -704,12 +704,12 @@ List<charts.Series<Task, String>> _seriesPieData;
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           Text(
             'Disponível na carteira',
-            style: styleTextApresentacao,
+            style: styleTextlongo,
           ),
           SizedBox(height: 10.0),
           Text(
             'R\$ 1.100,00',
-            style: styleTextApresentacao,
+            style: styleTextlongo,
           ),
         ]),
         InkWell(
@@ -774,7 +774,7 @@ List<charts.Series<Task, String>> _seriesPieData;
                     child: SingleChildScrollView(
                       physics: AlwaysScrollableScrollPhysics(),
                       padding: EdgeInsets.symmetric(
-                        horizontal: 30.0,
+                        horizontal: 25.0,
                         vertical: 40.0,
                       ),
                       child: Column(
@@ -829,7 +829,7 @@ List<charts.Series<Task, String>> _seriesPieData;
                     child: SingleChildScrollView(
                       physics: AlwaysScrollableScrollPhysics(),
                       padding: EdgeInsets.symmetric(
-                        horizontal: 30.0,
+                        horizontal: 25.0,
                         vertical: 40.0,
                       ),
                       child: Column(
@@ -880,7 +880,7 @@ List<charts.Series<Task, String>> _seriesPieData;
                     child: SingleChildScrollView(
                       physics: AlwaysScrollableScrollPhysics(),
                       padding: EdgeInsets.symmetric(
-                        horizontal: 30.0,
+                        horizontal: 25.0,
                         vertical: 40.0,
                       ),
                       child: Column(
@@ -925,7 +925,7 @@ List<charts.Series<Task, String>> _seriesPieData;
                     child: SingleChildScrollView(
                       physics: AlwaysScrollableScrollPhysics(),
                       padding: EdgeInsets.symmetric(
-                        horizontal: 30.0,
+                        horizontal: 25.0,
                         vertical: 40.0,
                       ),
                       child: Column(

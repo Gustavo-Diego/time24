@@ -18,12 +18,12 @@ class _ConfirmarInvestimentoState extends ModularState<ConfirmarInvestimento, Ho
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           Text(
             'Disponível na carteira',
-            style: styleTextApresentacao,
+            style: styleTextlongo,
           ),
           SizedBox(height: 10.0),
           Text(
             'R\$ 1.100,00',
-            style: styleTextApresentacao,
+            style: styleTextlongo,
           ),
         ]),
         InkWell(
@@ -172,7 +172,7 @@ class _ConfirmarInvestimentoState extends ModularState<ConfirmarInvestimento, Ho
                   child: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
                     padding: EdgeInsets.symmetric(
-                      horizontal: 30.0,
+                      horizontal: 25.0,
                       vertical: 30.0,
                     ),
                     child: Column(
