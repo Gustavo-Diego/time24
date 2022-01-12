@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:projeto1/app/modules/home/models/investimento.dart';
+// import 'package:projeto1/app/modules/home/models/investimento.dart';
 import 'package:projeto1/app/modules/home/models/sonho.dart';
 import 'package:projeto1/app/modules/shared/utilities/constants.dart';
 import 'package:projeto1/app/modules/home/home_controller.dart';

@@ -1,13 +1,13 @@
 class Investimento {
-  double dci;
+  double cdi;
   String nome;
   String vencimento;
   double valorMinimo;
 
-  Investimento({this.dci, this.nome, this.vencimento, this.valorMinimo});
+  Investimento({this.cdi, this.nome, this.vencimento, this.valorMinimo});
 
   Investimento.fromJson(Map<String, dynamic> json) {
-    dci = json['dci'];
+    cdi = json['cdi'];
     nome = json['nome'];
     vencimento = json['vencimento'];
     valorMinimo = json['valorMinimo'];
@@ -15,7 +15,7 @@ class Investimento {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['dci'] = this.dci;
+    data['cdi'] = this.cdi;
     data['nome'] = this.nome;
     data['vencimento'] = this.vencimento;
     data['valorMinimo'] = this.valorMinimo;
